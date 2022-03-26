@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "apt-summer-334416",
+  "private_key_id": "ca09c3224582c7406f7a5e7f1d652e430b170de3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDe90F6w8iifxsq\n+zyO02zCUAZB3acLxc5P4+kRiXtKw5GAzGOzvc3bpNAsa+incVhXYWfzq05j1VTM\nDvuQHEFXBI1/cR3VkzgwACDdLo65r9heDiTBCTxeTgn/3lcFffCcHE3Tm00tsHCd\ndPvVLKQoVXpi1bjQMFynH0Pl6zVEmh2dGzxLc9IaoonBpen38w8ROBqliQLRY8eq\nL2pxv71PEnhQiE/QddcH9ggCz9x88oMWWwoRa/9tBoxuRx6IAkoHls98uQY/HALi\n/Se/IeJ7paqfTOGlios95PcXdngJF/nl1Xrmpkg5l9fnbJrcMbggftc/Jk7iMrvU\nQHKZ4RRZAgMBAAECggEAVb9ZW1E4M+YWGK2OWI9O4FvOTD5mI8zqzyajV687z0Dv\nEE2KenGgXbxAoxTM4LhidRhs1fUnrJU6i0+nx4BWUJTbpgtmoeCAV1V1Thq9oQPT\nfjiKQgK/SLVSeyiS5vXMNv1boOm1AME+Tg/TWeRVLX3SF3iCHu66czs+7YlLbxnu\nIyFFOuoxlqBbtvzNRNOmGzyST09unFtbpm1d4xT3qWUje9b9N2lyPDjZse3ipW7m\nB2ufGFhcw9UjIAdpbs6W+uzFb1tOtX9C7T+2LWW3K860u4CB81BvTAfxpqwd8mOn\n6qni94mWJGm+xslHQrNKl4H2YEwbhury89z3MpYJkQKBgQD5XI3JfYRU60wuLTho\nmSbbYgba2+5Gk0batW3mSWiKlq21d9UcxX1gMeCNKcOKtTXCUFtKx5HcJ+S45/ib\n4I4/q1Hz5S90erh5p5SMThqy8r1w7RAADu9KnJz8zTV7VABvB72KbOVl6uEIAHUx\nStqa53SVB/ifLvErO247lUDKfwKBgQDk5s9s6VMvqE8kiOy14umBf8rZht/yXKVG\nUhG2seEvZ8dRHhF8wlcnBmaDotA5XpM8dqzrvILbRkAa5aLMsoEF/295MECUZlrB\nibapCnE4YFdB6+CEl294FUh9ILaueN1B/0TG0SPBtACFOMBCPVXXb2+biNtqW3k0\n84E2FpJFJwKBgQDxQsssF3ThdIbQZpAdI5Ck0cMwHXn8bqIvGTqrhHrRG9gVq0tV\n+v3DBH7uFWpL2eeZiYXKZCyLhU2WWVn/9tOqZmd0QloXqGSzz5+54BeU66a+i57f\nb5O17LE3JpSILk39HtAUDigk44u14juA5Zt8JFR3nK6/1PshiO6uV0nIoQKBgQCx\nVdO7R+SHlniCEIZ6v2oyRqQL9H8JUBdHLIvGo3aW+GqlgIsBwbotZLsFHpz85TVi\ncXq0Q16JrJo7fE6tEVn+II/nLqfJkKadLCjUO1/N0m2nh6twbbYRLUP0lOSStNaN\nq8tH0H1IM0D39SiV6NjZR98Ke3OpqWZ0zHX9Rm1ZnwKBgFrcW8XSMAIL3EM0gSVF\nRZigT3KKdbeILGBIh4ULWzO9kGtHQW3sXHbVNTm2XOHpCHopo1kBUJAulYXGcuS/\nVxylrmhi3N87ltRYAGetbHQ345yftVBA4LbmsrN3iAKnWnAVqz6FrBvan6Raf7dV\nl0CATjdI6wZkP5Rp/2zXB3EZ\n-----END PRIVATE KEY-----\n",
+  "client_email": "spkf-storage@apt-summer-334416.iam.gserviceaccount.com",
+  "client_id": "115061462034424227290",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/spkf-storage%40apt-summer-334416.iam.gserviceaccount.com"
+}
