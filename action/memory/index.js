@@ -1,7 +1,7 @@
 const Memory = require("../../model/memory")
 const constant = require('../../constant');
 
-const getSingleMemory = (req, res) => {
+const getSingleMemory = async (req, res) => {
     const { memoryId } = req.query
 
     if (!memoryId) {
@@ -22,7 +22,7 @@ const getSingleMemory = (req, res) => {
     });
 }
 
-const getListMemory = (req, res) => {
+const getListMemory = async (req, res) => {
     let { limit, offset } = req.query;
 
     limit = parseInt(limit, 10);

@@ -7,5 +7,6 @@ router.get('/', auth, action.getUserById);
 router.get('/list', auth, action.getAllUsers);
 router.put('/active', auth, action.activeUser)
 router.put('/deactive', auth, action.deactiveUser)
+router.get("/partner", action.getPartner);
 
 module.exports = router;

@@ -8,18 +8,17 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     userId: { type: String },
-    fullName: {
+    fullname: {
         type: String,
         required: true,
         validate: {
-            validator: function (fullName) {
-                return fullName.length > 5;
+            validator: function (fullname) {
+                return fullname.length > 5;
             },
             message: 'User full name must be more than 5 characters',
         },
     },
     avatar: { type: String },
-    email: { type: String, required: true, unique: true },
     status: { type: String, enum: constant.UserStatus },
 
     hash: String,

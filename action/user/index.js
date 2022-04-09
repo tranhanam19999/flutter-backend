@@ -132,4 +132,26 @@ const deactiveUser = async (req, res) => {
     });
 }
 
-module.exports = { getAllUsers, getUserById, getUserInfosByToken, activeUser, deactiveUser };
+const getPartner = async (req, res) => {
+    const { userId } = req.query
+
+    if (!userId) {
+        res.status(constant.respStatus.INVALID).json({
+            code: constant.respStatus.INVALID,
+            message: "Invalid input",
+            error_code: constant.errorCode.INVALID,
+        });
+        return;
+    }
+
+    const result = await User.findOne({
+        partnerIds: userId,
+    })
+
+    res.status(constant.respStatus.OK).json({
+        code: constant.respStatus.OK,
+        data: result,
+    });
+}
+
+module.exports = { getAllUsers, getUserById, getUserInfosByToken, activeUser, deactiveUser, getPartner };

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const action = require('../action/user');
+const action = require('../action/memory');
 const auth = require('../middleware/auth');
 
 router.get('/', auth, action.getSingleMemory);
