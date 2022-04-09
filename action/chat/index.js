@@ -1,4 +1,5 @@
 const Chat = require("../../model/chat")
+const constant = require('../../constant');
 
 const createChatMessage = async (req, res) => {
     const chat = new Chat(req.body)
@@ -20,10 +21,20 @@ const createChatMessage = async (req, res) => {
 }
 
 const getChatMessage = async (req, res) => {
-    const { userId } = req.query
+    const { senderId } = req.query
 
-    const chatQueryResp = Chat.find({
-        senderId: userId,
+    if (!senderId) {
+        res.json({
+            code: constant.respStatus.INVALID,
+            message: "Invalid input",
+            error_code: constant.errorCode.INVALID,
+        });
+
+        return
+    }
+
+    const chatQueryResp = await Chat.find({
+        senderId: senderId,
     })
 
     return res.status(200).send({
