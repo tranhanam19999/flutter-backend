@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
     },
     avatar: { type: String },
     status: { type: String, enum: constant.UserStatus },
+    partnerId: { type: String },
 
     hash: String,
     salt: String,

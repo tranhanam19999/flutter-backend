@@ -145,7 +145,36 @@ const getPartner = async (req, res) => {
     }
 
     const result = await User.findOne({
-        partnerIds: userId,
+        partnerId: userId,
+    }, { _id: 0, token: 0, salt: 0, hash: 0, __v: 0, password: 0 })
+
+    res.status(constant.respStatus.OK).json({
+        code: constant.respStatus.OK,
+        data: result,
+    });
+}
+
+const updatePartner = async (req, res) => {
+    const { userId, partnerId } = req.query
+
+    if (!userId || !partnerId) {
+        res.status(constant.respStatus.INVALID).json({
+            code: constant.respStatus.INVALID,
+            message: "Invalid input",
+            error_code: constant.errorCode.INVALID,
+        });
+    }
+
+    const result = await User.updateOne({
+        userId: userId,
+    }, {
+        partnerId: partnerId,
+    })
+
+    await User.updateOne({
+        userId: partnerId,
+    }, {
+        partnerId: userId
     })
 
     res.status(constant.respStatus.OK).json({
@@ -154,4 +183,4 @@ const getPartner = async (req, res) => {
     });
 }
 
-module.exports = { getAllUsers, getUserById, getUserInfosByToken, activeUser, deactiveUser, getPartner };
+module.exports = { getAllUsers, getUserById, getUserInfosByToken, activeUser, deactiveUser, getPartner, updatePartner };

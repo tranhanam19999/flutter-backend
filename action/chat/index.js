@@ -21,9 +21,9 @@ const createChatMessage = async (req, res) => {
 }
 
 const getChatMessage = async (req, res) => {
-    const { senderId } = req.query
+    const { userId } = req.query
 
-    if (!senderId) {
+    if (!userId) {
         res.json({
             code: constant.respStatus.INVALID,
             message: "Invalid input",
@@ -34,12 +34,19 @@ const getChatMessage = async (req, res) => {
     }
 
     const chatQueryResp = await Chat.find({
-        senderId: senderId,
+        senderId: userId,
     })
+
+    const receiveChatQueryResp = await Chat.find({
+        receiverId: userId,
+    })
+
+    const allChatQueryResp = chatQueryResp.concat(receiveChatQueryResp)
+    const sortedChatConversation = allChatQueryResp.sort((a,b) => a.createdTime - b.createdTime)
 
     return res.status(200).send({
         code: constant.respStatus.OK,
-        data: chatQueryResp,
+        data: sortedChatConversation,
         message: "Query chat successfully",
     })
 }

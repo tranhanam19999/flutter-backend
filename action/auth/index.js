@@ -82,6 +82,7 @@ const signUp = (req, res) => {
             } else {
                 return res.status(200).send({
                     code: constant.respStatus.OK,
+                    data: newUser,
                     message: 'Create user successfully',
                 });
             }
