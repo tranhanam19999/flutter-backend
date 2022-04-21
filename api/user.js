@@ -4,9 +4,10 @@ const action = require('../action/user');
 const auth = require('../middleware/auth');
 
 router.get('/', auth, action.getUserById);
-router.get('/list', auth, action.getAllUsers);
+router.get('/list', action.getAllUsers);
 router.put('/active', auth, action.activeUser)
 router.put('/deactive', auth, action.deactiveUser)
 router.get("/partner", action.getPartner);
+router.get("/partner", action.verifyPartner)
 
 module.exports = router;

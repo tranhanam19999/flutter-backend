@@ -183,4 +183,38 @@ const updatePartner = async (req, res) => {
     });
 }
 
-module.exports = { getAllUsers, getUserById, getUserInfosByToken, activeUser, deactiveUser, getPartner, updatePartner };
+const verifyPartner = async (req, res) => {
+    const { userId, partnerUsername } = req.query
+
+    if (!userId || !partnerUsername) {
+        res.status(constant.respStatus.INVALID).json({
+            code: constant.respStatus.INVALID,
+            message: "Invalid input",
+            error_code: constant.errorCode.INVALID,
+        });
+    }
+
+    const result = await User.findOne({
+        username: partnerUsername
+    })
+
+    if (!result.partnerId) {
+        await User.updateOne({
+            username: partnerUsername,
+        }, {
+            partnerId: userId
+        })
+
+        const partner =  await User.findOne({
+            username: partnerUsername,
+        })
+
+        await User.updateOne({
+            userId: userId,
+        }, {
+            partnerId: partner.userId
+        })
+    }
+}
+
+module.exports = { getAllUsers, getUserById, getUserInfosByToken, activeUser, deactiveUser, getPartner, updatePartner, verifyPartner };
