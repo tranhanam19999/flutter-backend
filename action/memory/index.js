@@ -1,62 +1,58 @@
-const Memory = require("../../model/memory")
-const constant = require('../../constant');
+const Memory = require("../../model/memory");
+const constant = require("../../constant");
 
-const getSingleMemory = async (req, res) => {
-    const { memoryId } = req.query
+const createMemory = async (req, res) => {
+  const newMemory = req.body;
+  try {
+    await Memory.create(newMemory);
+    res.status(201).json({ message: "Created memory successfully!" });
+  } catch (error) {
+    res.status(400).json({ message: "err" });
+  }
+};
 
-    if (!memoryId) {
-        res.status(constant.respStatus.INVALID).json({
-            code: constant.respStatus.INVALID,
-            message: 'INVALID_INPUT',
-            error_code: constant.errorCode.INVALID,
-        });
+const updateMemory = async (req, res) => {
+  const memory_id = req.params.memory_id;
+  const newMemory = req.body;
+  try {
+    await Memory.findByIdAndUpdate(memory_id, newMemory);
+    res.status(200).json({ message: "Memory updated successfully" });
+  } catch (error) {
+    res.status(404).json({ message: "error" });
+  }
+};
+
+const getMemoryByUser = async (req, res) => {
+  let user_id = req.params.user_id;
+  try {
+    let memory = await Memory.findOne({ user_id });
+    if (!memory) {
+      try {
+        let memory_1 = await Memory.findOne({ partner_id: user_id });
+        if (!memory_1) {
+          return res
+            .status(constant.respStatus.NOT_FOUND)
+            .json({ message: "User not found1" });
+        } else {
+          return res.status(constant.respStatus.OK).json(memory_1);
+        }
+      } catch (error) {
+        return res
+          .status(constant.respStatus.NOT_FOUND)
+          .json({ message: "User not found2" });
+      }
+    } else {
+      return res.status(constant.respStatus.OK).json(memory);
     }
-
-    const memory = Memory.findOne({
-        memoryId
-    })
-
-    res.status(constant.respStatus.OK).json({
-        code: constant.respStatus.OK,
-        data: memory,
-    });
-}
-
-const getListMemory = async (req, res) => {
-    let { limit, offset } = req.query;
-
-    limit = parseInt(limit, 10);
-    offset = parseInt(offset, 10);
-
-    if (!limit || limit < 0 || Object.is(NaN, limit)) {
-        limit = 20;
-    }
-    if (!offset || offset < 0 || Object.is(NaN, offset)) {
-        offset = 0;
-    }
-
-    const totalMemory = await Memory.find({}).count();
-    const result = await Memory.find({}, { _id: 0, token: 0, salt: 0, hash: 0, __v: 0 })
-        .skip(offset)
-        .limit(limit);
-
-    if (result.length === 0) {
-        res.status(constant.respStatus.INVALID).json({
-            code: constant.respStatus.NOT_FOUND,
-            message: "Not foudn any memories",
-            error_code: constant.errorCode.NOT_FOUND,
-        });
-    }
-
-    res.status(constant.respStatus.OK).json({
-        code: constant.respStatus.OK,
-        message: 'Get list memory succesfully',
-        data: result,
-        total: totalMemory,
-    });
-}
+  } catch (error) {
+    return res
+      .status(constant.respStatus.NOT_FOUND)
+      .json({ message: "User not found3" });
+  }
+};
 
 module.exports = {
-    getSingleMemory,
-    getListMemory
-}
+  getMemoryByUser,
+  createMemory,
+  updateMemory,
+};
