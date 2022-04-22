@@ -183,6 +183,15 @@ const updatePartner = async (req, res) => {
     });
 }
 
+const getUserWithoutPartner = async (req, res) => {
+    const result = await User.find({ partnerId: { $exists:false } })
+
+    res.status(constant.respStatus.OK).json({
+        code: constant.respStatus.OK,
+        data: result,
+    });
+}
+
 const verifyPartner = async (req, res) => {
     const { userId, partnerUsername } = req.query
 
@@ -215,6 +224,11 @@ const verifyPartner = async (req, res) => {
             partnerId: partner.userId
         })
     }
+
+    res.status(constant.respStatus.OK).json({
+        code: constant.respStatus.OK,
+        message: "OK",
+    });
 }
 
-module.exports = { getAllUsers, getUserById, getUserInfosByToken, activeUser, deactiveUser, getPartner, updatePartner, verifyPartner };
+module.exports = { getAllUsers, getUserById, getUserInfosByToken, activeUser, deactiveUser, getPartner, updatePartner, verifyPartner, getUserWithoutPartner };
