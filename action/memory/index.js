@@ -2,7 +2,14 @@ const Memory = require("../../model/memory");
 const constant = require("../../constant");
 
 const createMemory = async (req, res) => {
-  const newMemory = req.body;
+  const memory = req.body;
+  const user_id = memory.partner_id;
+  const partner_id = memory.user_id;
+  const newMemory = {
+    user_id,
+    partner_id,
+    images: [],
+  };
   try {
     await Memory.create(newMemory);
     res.status(201).json({ message: "Created memory successfully!" });
