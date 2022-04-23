@@ -3,15 +3,17 @@ const constant = require("../../constant");
 
 const createMemory = async (req, res) => {
   const memory = req.body;
-  const user_id = memory.partner_id;
-  const partner_id = memory.user_id;
-  const newMemory = {
-    user_id,
-    partner_id,
-    images: [],
-  };
+  const user_id = memory.user_id;
+  const newMemory = await Memory.findOne({ user_id });
+  if (newMemory) {
+    return res.status(400).json({ message: "err" });
+  }
+  const newMemory2 = await Memory.findOne({ partner_id: user_id });
+  if (newMemory2) {
+    return res.status(400).json({ message: "err" });
+  }
   try {
-    await Memory.create(newMemory);
+    await Memory.create(memory);
     res.status(201).json({ message: "Created memory successfully!" });
   } catch (error) {
     res.status(400).json({ message: "err" });
