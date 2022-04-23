@@ -4,6 +4,8 @@ const constant = require('../../constant');
 const createChatMessage = async (req, res) => {
     const chat = new Chat(req.body)
 
+    chat.createdTime = Date.now();
+
     chat.save((err, _) => {
         if (err) {
             return res.status(400).send({

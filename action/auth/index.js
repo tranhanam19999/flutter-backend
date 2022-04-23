@@ -22,7 +22,7 @@ const signIn = (req, res) => {
                         error_code: constant.errorCode.INVALID,
                     });
                 }
-                if (user.validPassword(req.body.password)) {
+                if (user?.validPassword(req.body.password)) {
                     const token = jwt.sign(
                         { userId: user.userId, email: user.email },
                         process.env.TOKEN_KEY,
