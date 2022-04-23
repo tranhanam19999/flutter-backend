@@ -4,8 +4,8 @@ const memorySchema = new mongoose.Schema({
   createdTime: { type: Date, default: Date.now() },
   updatedTime: { type: Date, default: Date.now() },
 
-  user_id: { type: String },
-  partner_id: { type: String },
+  user_id: { type: String, unique: true },
+  partner_id: { type: String, unique: true },
   images: [
     {
       type: String,
