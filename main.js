@@ -51,6 +51,7 @@ app.use('/auth', api.authRouter);
 app.use('/chat', api.chatRouter);
 app.use('/user', api.userRouter);
 app.use('/memory', api.memoryRouter)
+app.use("/motto", api.mottoRouter)
 
 app.use('/', (_, res) => {
     res.json('NodeJS-API is working!');
