@@ -3,6 +3,7 @@ const constant = require('../../constant');
 
 const createMotto = async (req, res) => {
     const newMotto = new Motto(req.body);
+    newMotto.createdTime = Date.now()
     newMotto.save()
 
     return res.status(200).send({
