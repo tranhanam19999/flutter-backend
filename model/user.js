@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const crypto = require('crypto');
-const constant = require('../constant');
+const mongoose = require("mongoose")
+const crypto = require("crypto")
+const constant = require("../constant")
 
 const userSchema = new mongoose.Schema({
     createdTime: { type: Date, default: Date.now() },
@@ -13,9 +13,9 @@ const userSchema = new mongoose.Schema({
         required: true,
         validate: {
             validator: function (fullname) {
-                return fullname.length > 5;
+                return fullname.length > 5
             },
-            message: 'User full name must be more than 5 characters',
+            message: "User full name must be more than 5 characters",
         },
     },
     avatar: { type: String },
@@ -26,22 +26,23 @@ const userSchema = new mongoose.Schema({
     salt: String,
 
     token: { type: String },
-});
+    matchTime: { type: Date },
+})
 
 userSchema.methods.setPassword = function (password) {
     // Creating a unique salt for a particular user
-    this.salt = crypto.randomBytes(16).toString('hex');
+    this.salt = crypto.randomBytes(16).toString("hex")
 
     // Hashing user's salt and password with 1000 iterations,
 
-    this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, `sha512`).toString(`hex`);
-};
+    this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, `sha512`).toString(`hex`)
+}
 
 // Method to check the entered password is correct or not
 userSchema.methods.validPassword = function (password) {
-    var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, `sha512`).toString(`hex`);
-    return this.hash === hash;
-};
+    var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, `sha512`).toString(`hex`)
+    return this.hash === hash
+}
 
-const User = mongoose.model('users', userSchema, 'users');
-module.exports = User;
+const User = mongoose.model("users", userSchema, "users")
+module.exports = User
