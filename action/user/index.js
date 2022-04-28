@@ -165,16 +165,19 @@ const updatePartner = async (req, res) => {
         });
     }
 
+    const matchTime = Date.now()
     const result = await User.updateOne({
         userId: userId,
     }, {
         partnerId: partnerId,
+        matchTime: matchTime
     })
 
     await User.updateOne({
         userId: partnerId,
     }, {
-        partnerId: userId
+        partnerId: userId,
+        matchTime: matchTime
     })
 
     res.status(constant.respStatus.OK).json({
