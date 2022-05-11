@@ -7,6 +7,7 @@ const constant = require("./constant");
 const api = require("./api");
 
 const multer = require("multer");
+const { checkCoupleDateRange } = require("./worker");
 const multerMid = multer({
   storage: multer.memoryStorage(),
   limits: {
@@ -62,6 +63,7 @@ app.use("/", (_, res) => {
   res.json("NodeJS-API is working!");
 });
 
+checkCoupleDateRange(10)
 httpServer.listen(process.env.PORT || constant.PORT, () => {
   console.log("Server is running on port: ", process.env.PORT || constant.PORT);
 });

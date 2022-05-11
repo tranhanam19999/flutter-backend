@@ -28,7 +28,7 @@ const getListMotto = async (req, res) => {
 
     const mottos = await Motto.find({
         creatorId: creatorId
-    })
+    }).sort({_id: -1})
 
     if (mottos?.length === 0) {
         const initResult = _initMottos(creatorId)
